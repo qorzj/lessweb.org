@@ -1,0 +1,8 @@
+lessweb
+mysql-connector
+sqlalchemy
+freezegun
+rqtest
+requests
+transcrypt
+nose

@@ -1,0 +1,6 @@
+FROM qorzj/python3.6-lessweb
+COPY requirements.txt /tmp/
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r /tmp/requirements.txt
+ADD dist/lessweb_org.tar.gz /project/
+RUN cd /project && sh build.sh
+CMD python -V

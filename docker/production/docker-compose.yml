@@ -1,0 +1,23 @@
+version: '3'
+services:
+  lessweb_org_web:
+        build:
+            dockerfile: docker/dockerfile
+            context: ../../
+        ports: ["24804:8080"]
+        logging:
+          options:
+            max-size: 500m
+        volumes: []
+        environment:
+          LESS_ENV: production
+        working_dir: /project
+        entrypoint: python start.py
+        restart: always
+        links: []
+        networks:
+          - common
+
+networks:
+    common:
+        external: true
