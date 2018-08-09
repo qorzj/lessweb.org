@@ -4,7 +4,7 @@ from .pydom import Node as D
 def pageFrame(file, *divs):
     if file:
         modname = file.split('/')[-1].rsplit('.', 1)[0]
-        modjs = D('script', '', Src=f'/static/__javascript__/{modname}.js')
+        modjs = D('', Src=f'/static/__javascript__/{modname}.js').Script
     else:
         modjs = ''
     return D(
@@ -15,7 +15,7 @@ def pageFrame(file, *divs):
             D(HttpEquiv='Pragma', Content='no-cache').Meta,
             D(HttpEquiv='Expires', Content='0').Meta,
             D('Lessweb: Python Fullstack Web Framework').Title,
-            D(Href='https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css', Rel='stylesheet', Type='text/css').Link,
+            D(Href='https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css', Rel='stylesheet', Type='text/css').Link,
             D('', Src='/static/js/zepto.min.js').Script,
             D(
                 """
@@ -37,3 +37,34 @@ def pageFrame(file, *divs):
             modjs,
         ).Body,
     ).Html
+
+
+class PanelItem:
+    def __init__(self, text, href):
+        self.text = text
+        self.href = href
+
+
+def panel(*, title, items):
+    return D(
+        D(title, Class="weui-panel__hd", Style="font-size:15px").Div,
+        D(
+            D(
+                D(
+                    *[
+                        D(
+                            D(item.text, Class="weui-cell__bd weui-cell_primary"),
+                            D(Class="weui-cell__ft").Span,
+                            Href=item.href,
+                            Class="weui-cell weui-cell_access",
+                        ).A
+                        for item in items
+                    ],
+                    Class="weui-cells",
+                ),
+                Class="weui-media-box weui-media-box_small-appmsg",
+            ),
+            Class="weui-panel__bd",
+        ),
+        Class="weui-panel",
+    )
