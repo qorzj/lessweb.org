@@ -6,3 +6,4 @@ rqtest
 requests
 transcrypt
 nose
+markdown

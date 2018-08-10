@@ -1,14 +1,17 @@
 from functools import lru_cache
 import os
 
-from lessweb import Service
+from lessweb import Service, NotFound
 from lessweb_org.utils import markdown_tool
 
 
 @lru_cache(maxsize=128)
 def get_cached_html(name):
     filename = f'{CookbookService.wiki_path}/{name}.md'
-    md_text = open(filename).read()
+    try:
+        md_text = open(filename).read()
+    except:
+        raise NotFound(text='not found')
     html_text = markdown_tool.parse(md_text)
     return html_text
 

@@ -1,6 +1,21 @@
 from .pydom import Node as D
 
 
+def footer():
+    return D(
+        D(
+            D('首页', Href='/', Class="weui-footer__link").A,
+            D('Github', Href='https://github.com/qorzj/lessweb', Class="weui-footer__link").A,
+            Class="weui-footer__links",
+        ).P,
+        D(
+            'Copyright &copy; 2018 lessweb.org<br/><br/><br/>',
+            Class="weui-footer__text",
+        ).P,
+        Class="weui-footer",
+    )
+
+
 def pageFrame(file, *divs):
     if file:
         modname = file.split('/')[-1].rsplit('.', 1)[0]
@@ -11,12 +26,18 @@ def pageFrame(file, *divs):
         D(
             D(Charset='UTF-8').Meta,
             D(Rel='shortcut icon', Type='image/x-icon', Href='/static/favicon.png', Media='screen').Link,
+            D(Name='apple-mobile-web-app-capable', Content='yes').Meta,
+            D(Name='apple-touch-fullscreen', Content='yes').Meta,
+            D(Name='viewport', Content='width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no').Meta,  # 响应式布局的关键
             D(HttpEquiv='Cache-Control', Content='no-cache, no-store, must-revalidate').Meta,
             D(HttpEquiv='Pragma', Content='no-cache').Meta,
             D(HttpEquiv='Expires', Content='0').Meta,
             D('Lessweb: Python Fullstack Web Framework').Title,
             D(Href='https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css', Rel='stylesheet', Type='text/css').Link,
+            D(Href='/static/css/site.css', Rel='stylesheet', Type='text/css').Link,
+            D(Href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css', Rel='stylesheet', Type='text/css').Link,
             D('', Src='/static/js/zepto.min.js').Script,
+            D('', Src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js').Script,
             D(
                 """
                 body {
@@ -33,8 +54,10 @@ def pageFrame(file, *divs):
         ).Head,
         D(
             *divs,
+            footer(),
             D('', Src='https://res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js').Script,
             modjs,
+            D('hljs.initHighlightingOnLoad();').Script,
         ).Body,
     ).Html
 
