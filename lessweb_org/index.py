@@ -1,3 +1,5 @@
+import threading
+import time
 from lessweb import Application
 from lessweb.plugin import database
 
@@ -16,3 +18,14 @@ app.add_get_mapping('/', home, view="cookbook.homePage")
 app.add_get_mapping('/cookbook/(?P<name>.+)', article, view="cookbook.articlePage")
 
 app.add_get_mapping('/__design__/home', lambda:0, view="design.homePage")
+
+
+def routing():
+    from lessweb_org.service.cookbook import CookbookService
+    serv = CookbookService()
+    while...:
+        serv.fetch_wiki()
+        time.sleep(3600 * 12)
+
+
+threading.Thread(target=routing).start()
