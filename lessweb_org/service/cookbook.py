@@ -12,6 +12,8 @@ def get_cached_html(name):
         md_text = open(filename).read()
     except:
         raise NotFound(text='not found')
+    if name != 'Home':
+        md_text = f'# {name}\n' + md_text
     html_text = markdown_tool.parse(md_text)
     return html_text
 
@@ -24,7 +26,7 @@ class CookbookService(Service):
 
     def fetch_wiki(self):
         if os.path.exists(self.wiki_path):
-            os.system('cd data && git pull')
+            os.system('cd data/lessweb.wiki && git pull')
         else:
             os.system('cd data && git clone https://github.com/qorzj/lessweb.wiki.git')
         get_cached_html.cache_clear()
