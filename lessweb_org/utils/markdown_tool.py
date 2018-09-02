@@ -99,6 +99,7 @@ def parse(md_text) -> str:
             html_text = markdown.markdown(plain_text, extensions=[
                 'markdown.extensions.fenced_code',
                 'markdown.extensions.nl2br',
+                'markdown.extensions.sane_lists',
                 md_wiki_ext,
                 'markdown.extensions.toc',
             ])
