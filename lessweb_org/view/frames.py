@@ -32,7 +32,7 @@ def pageFrame(file, *divs):
             D(HttpEquiv='Cache-Control', Content='no-cache, no-store, must-revalidate').Meta,
             D(HttpEquiv='Pragma', Content='no-cache').Meta,
             D(HttpEquiv='Expires', Content='0').Meta,
-            D('Lessweb: Python Fullstack Web Framework').Title,
+            D('Lessweb: 「嘞是web」Python Fullstack Web Framework').Title,
             D(Href='https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css', Rel='stylesheet', Type='text/css').Link,
             D(Href='/static/css/site.css', Rel='stylesheet', Type='text/css').Link,
             D(Href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css', Rel='stylesheet', Type='text/css').Link,
